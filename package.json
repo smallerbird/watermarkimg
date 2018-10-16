@@ -1,6 +1,6 @@
 {
-  "name": "watermarkimg",
-  "version": "1.0.0",
+  "name": "node-watermarkimg",
+  "version": "0.0.2",
   "description": "",
   "main": "index.js",
   "directories": {

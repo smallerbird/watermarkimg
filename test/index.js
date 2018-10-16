@@ -1,8 +1,11 @@
 const path = require('path')
 const Watermarkimg=require('../index');
 
-let img=new Watermarkimg(210,154);
-let canvas=img.canvas;
-canvas.fill(0x00, 0x0ff, 0x00);
-img.drawImg(path.resolve(__dirname,'./watermarkImg.png'))
-.save(path.resolve(__dirname,'./a.png'))
+let bakColor=[0xff,0xff,0xff,1];
+let img=new Watermarkimg(210,154,bakColor);
+img
+    //.drawImg(path.resolve(__dirname,'./800x600.jpg'))
+    .drawImg(path.resolve(__dirname,'./600x800.jpg'))
+    .drawImg(path.resolve(__dirname,'./watermarkImg.png'))
+    .drawImg(path.resolve(__dirname,'./logo.png'))
+    .save(path.resolve(__dirname,'./a.png'))
