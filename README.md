@@ -7,11 +7,11 @@
 使用方法
 -----
 ```sh
-npm install 
+npm install node-watermarkimg
 ```
 ```js
 const path = require('path')
-const Watermarkimg=require('../index');
+const Watermarkimg=require('node-watermarkimg');
 
 //[r,g,b,alpha]
 let bakColor=[0xff,0xff,0xff,1];

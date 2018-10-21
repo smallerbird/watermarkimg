@@ -8,8 +8,9 @@ class Watermarkimg{
         this._canvas=new images(canvasWidth,canvasHeight);
         this._canvas.fill(bakColor[0], bakColor[1], bakColor[2],bakColor[3]);
         //images
-       //this._img = images(sourceImg);
-       //console.log(this._img.width(),this._img.height())
+        //this._img = images(sourceImg);
+        //console.log(this._img.width(),this._img.height())
+        this.imgWH=0;
     }
     get canvas(){
         return this._canvas;
@@ -28,25 +29,38 @@ class Watermarkimg{
         this._canvas.save(filepath);
     }
     _resize(imgW,imgH){
-
         if(isDebug) console.log('img w:'+imgW+' h:'+imgH+' resize to:');
-
-        let imgWH=imgW/imgH;
+        if (this.imgWH==0){
+            this.imgWH=imgW/imgH
+        }
+        let imgWH=this.imgWH;
         let endW=imgW;
         let endH=imgH;
         if (imgW>imgH){
-            if (imgW>this._canvasWidth){
-                endW=this._canvasWidth;
-                endH=Math.floor(endW*imgWH);
+            if (this._canvasWidth>this._canvasHeight){
+                if (imgW>this._canvasWidth){
+                    endW=this._canvasWidth;
+                    endH=Math.floor(endW*imgWH);
+                }
+            }else{
+                if (imgH>this._canvasHeight){
+                    endH=this._canvasHeight;
+                    endW=Math.floor(endH/imgWH);
+                }
             }
+
         }else{
-            if (imgH>this._canvasHeight){
-                endH=this._canvasHeight;
-                endW=Math.floor(endH/imgWH);
+            if (this._canvasHeight>this._canvasWidth){
+                if (imgH>this._canvasHeight){
+                    endH=this._canvasHeight;
+                    endW=Math.floor(endH/imgWH);
+                }
+            }else{
+                if (imgW>this._canvasWidth){
+                    endW=this._canvasWidth;
+                    endH=Math.floor(endW*imgWH);
+                }
             }
-        }
-        if (endW>this._canvasWidth||endH>this._canvasHeight){
-            return this._resize(endW,endH);
         }
         return {w:endW,h:endH}
     }
